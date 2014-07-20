@@ -1,3 +1,8 @@
+---
+output:
+  html_document:
+    keep_md: yes
+---
 # Reproducible Research: Peer Assessment 1
 
 ## Loading and preprocessing the data
@@ -44,7 +49,7 @@ library('ggplot2')
 ggplot(totSteps, aes(x=steps)) + geom_histogram(binwidth = 1000)
 ```
 
-![plot of chunk unnamed-chunk-4](./PA1_template_files/figure-html/unnamed-chunk-4.png) 
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4.png) 
 
 The mean number of steps taken per day is:
 
@@ -80,7 +85,7 @@ This can be shown in a timeseries of the 5-minute interval (x-axis) and the aver
 plot(meanDaily$interval,meanDaily$steps,type='l')
 ```
 
-![plot of chunk unnamed-chunk-8](./PA1_template_files/figure-html/unnamed-chunk-8.png) 
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8.png) 
 
 The 5-minute interval which contains the most steps, averaged over each day is:
 
@@ -159,7 +164,7 @@ totSteps2<-aggregate(steps ~ date,activity2,FUN=sum)
 ggplot(totSteps2, aes(x=steps)) + geom_histogram(binwidth = 1000)
 ```
 
-![plot of chunk unnamed-chunk-16](./PA1_template_files/figure-html/unnamed-chunk-16.png) 
+![plot of chunk unnamed-chunk-16](figure/unnamed-chunk-16.png) 
 
 The mean amount of steps per day is:
 
@@ -185,13 +190,15 @@ These values are very similar to the estimates from the first part of the assign
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
-First, I create a new factor variable in the dataset with two levels â âweekdayâ and âweekendâ indicating whether a given date is a weekday or weekend day.
+First, I create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.
 
 
 ```r
 activity2$day<-weekdays(as.Date(activity2$date))
 activity2$type<-as.factor(ifelse(activity2$day %in% c('Saturday','Sunday'),"weekend","week"))
 ```
+
+
 
 Here you can see a panelplot showing the mean timeseries, by weekdays and weekends:
 
@@ -200,7 +207,7 @@ library(lattice)
 xyplot(steps~interval|type,data=activity2,type="l",layout=c(1,2))
 ```
 
-![plot of chunk unnamed-chunk-20](./PA1_template_files/figure-html/unnamed-chunk-20.png) 
+![plot of chunk unnamed-chunk-20](figure/unnamed-chunk-20.png) 
 
 
 
