@@ -127,6 +127,8 @@ activity2$day<-weekdays(as.Date(activity2$date))
 activity2$type<-as.factor(ifelse(activity2$day %in% c('Saturday','Sunday'),"weekend","week"))
 ```
 
+
+
 Here you can see a panelplot showing the mean timeseries, by weekdays and weekends:
 ```{r}
 library(lattice)
